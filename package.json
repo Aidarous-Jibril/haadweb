@@ -1,0 +1,24 @@
+{
+  "name": "haadweb",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "deploy": "gh-pages -d dist"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Aidarous-Jibril/haadweb.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Aidarous-Jibril/haadweb/issues"
+  },
+  "homepage": "https://aidarousjibril/github.io/haadweb",
+
+  "dependencies": {
+    "gh-pages": "^3.2.3"
+  }
+}
