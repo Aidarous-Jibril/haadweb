@@ -131,8 +131,8 @@
 
                 <!--Appointment Form-->
                 <div class="appointment-form">
-                    <form method="post" action="#">
-                    <form id="contactForm" class="contactForm" name="contactForm" onsubmit="return false"></form>
+                    <form id="contactForm" class="contactForm" name="contactForm" onsubmit="return false">
+                    <!-- <form method="post" action="#"> -->
                         <div class="form-group">
                             <input type="text" name="text" value="" id="enqName" placeholder="Namn" required>
                         </div>
@@ -891,6 +891,7 @@
             Password :password,
             To : 'info@haadwebbyra.se',
             From : enqName + "<br>" + enqEmail,
+            Subject: "A New Enquiry",
             Body : enqMessage
             })
             .then( function(){
