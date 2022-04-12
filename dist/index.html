@@ -126,24 +126,24 @@
                 <div class="cross-icon"><span class="fa fa-times"></span></div>
                 <div class="title">
                     <h4>Boka Tid</h4>
-                    <p class="display-5 " id="success"></p>
+                    <p class="display-5 " id="success1"></p>
                 </div>
 
                 <!--Appointment Form-->
                 <div class="appointment-form">
-                    <!-- <form method="post" action="#"> -->
+                    <form method="post" action="#">
                     <form id="contactForm" class="contactForm" name="contactForm" onsubmit="return false"></form>
                         <div class="form-group">
-                            <input type="text" name="text" value="" id="name" placeholder="Namn" required>
+                            <input type="text" name="text" value="" id="enqName" placeholder="Namn" required>
                         </div>
                         <div class="form-group">
-                            <input type="email" name="email" value="" id="email" placeholder="Email Adress" required>
+                            <input type="email" name="email" value="" id="enqEmail" placeholder="Email Adress" required>
                         </div>
                         <div class="form-group">
-                            <textarea placeholder="Meddelande" id="message" rows="5"></textarea>
+                            <textarea placeholder="Meddelande" id="enqMessage" rows="5"></textarea>
                         </div>
                         <div class="form-group">
-                            <button type="submit" id="btn" class="theme-btn">Skicka Nu!</button>
+                            <button type="submit" id="btn1" class="theme-btn">Skicka Nu!</button>
                         </div>
                     </form>
                 </div>
@@ -772,7 +772,7 @@
                            <div class="section-title mb-50">
                                 <span class="sub-title">Komma i kontakt</span>
                                 <h2>Behöver du några konsultationer?</h2>
-                                <p class="display-5 " id="success"></p>
+                                <p class="display-5 " id="success2"></p>
                             </div>
                             <form id="contactForm" class="contactForm" name="contactForm" onsubmit="return false">
                             <!-- <form id="contactForm" class="contactForm" name="contactForm" method="post"> -->
@@ -809,7 +809,7 @@
                                     </div>
                                     <div class="col-md-12">
                                         <div class="form-group mb-0 wow fadeInUp delay-0-5s">
-                                            <button class="theme-btn w-100" id="btn" type="submit" >skicka Meddelande <i class="fas fa-long-arrow-alt-right"></i></button>
+                                            <button class="theme-btn w-100" id="btn2" type="submit" >skicka Meddelande <i class="fas fa-long-arrow-alt-right"></i></button>
                                         </div>
                                     </div>
                                 </div>
@@ -875,10 +875,39 @@
     <script src="https://smtpjs.com/v3/smtp.js"></script>
     <script>
 
+        // Enquiry form
         var password = config.EMAIL_PASSWORD;
-        const btn = document.getElementById("btn")
+        const btn1 = document.getElementById("btn1")
 
-        btn.addEventListener('click' , () => {
+        btn1.addEventListener('click' , () => {
+        const enqName = document.getElementById("enqName").value;
+        const enqEmail = document.getElementById("enqEmail").value;
+        const enqMessage = document.getElementById("enqMessage").value;
+        console.log(enqName, enqEmail, enqMessage);
+
+        Email.send({
+            Host: "cpsrv43.misshosting.com",
+            Username : "info@haadwebbyra.se",
+            Password :password,
+            To : 'info@haadwebbyra.se',
+            From : enqName + "<br>" + enqEmail,
+            Body : enqMessage
+            })
+            .then( function(){
+                document.getElementById("success1").innerHTML= "<div class='text-success'> Tack för att du kontaktar oss, Vi återkommer! </div>"
+                document.getElementById("enqName").value  = "", 
+                document.getElementById("enqEmail").value = "", 
+                document.getElementById("enqMessage").value = ""
+                setTimeout(() => {
+                    window.location.href="#home"; 
+                    document.getElementById("success1").innerHTML= ""
+                    }, 3000)
+                });
+            })
+
+        // Contact form
+        const btn2 = document.getElementById("btn2")
+        btn2.addEventListener('click' , () => {
         const name = document.getElementById("name").value;
         const from = document.getElementById("email").value;
         const subject = document.getElementById("msg_subject").value;
@@ -895,14 +924,14 @@
             Body : message
             })
             .then( function(){
-                document.getElementById("success").innerHTML= "<div class='text-success'> Tack för att du kontaktar, Vi återkommer! </div>"
+                document.getElementById("success2").innerHTML= "<div class='text-success'> Tack för att du kontaktar, Vi återkommer! </div>"
                 document.getElementById("name").value  = "", 
                 document.getElementById("email").value = "", 
                 document.getElementById("message").value = ""
                 setTimeout(() => {
                     window.location.href="#home"; 
-                    document.getElementById("success").innerHTML= ""
-                    }, 5000)
+                    document.getElementById("success2").innerHTML= ""
+                    }, 3000)
                 });
             })
 

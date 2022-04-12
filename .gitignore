@@ -1,4 +1,4 @@
 node_modules
 # production
-/assets/js/config.js
+# /assets/js/config.js
 /dist/assets/js/config.js
