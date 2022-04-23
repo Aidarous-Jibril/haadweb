@@ -105,10 +105,13 @@
         $(".onepage a").on('click', function(e){
             e.preventDefault();
             var hash = this.hash;
-            var position = $(hash).offset().top;
+            if (hash.length) {
+            var position = $(hash).offset().top;  
+            console.log(hash)          
             $("html").animate({
                 scrollTop : position
             },1000);
+        }
         });
         
         
