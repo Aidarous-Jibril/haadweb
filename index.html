@@ -770,42 +770,38 @@
                                 <h2>Behöver du några konsultationer?</h2>
                                 <p class="display-5 " id="success2"></p>
                             </div>
-                            <form id="contactForm" class="contactForm" name="contactForm" onsubmit="return false">
-                            <!-- <form id="contactForm" class="contactForm" name="contactForm" method="post"> -->
+                           <!-- modify this form HTML and place wherever you want your form -->
+                            <form action="https://formspree.io/f/xkndraav" method="POST" >
                                 <div class="row clearfix">
                                     <div class="col-md-6">
-                                        <div class="form-group wow fadeInUp delay-0-1s">
-                                            <input type="text" id="name" name="name" class="form-control"  placeholder="Fullt namn" required data-error="Vänligen ange ditt namn">
-                                            <div class="help-block with-errors"></div>
+                                        <div class="form-group">
+                                            <input type="text" name="name" class="form-control" placeholder="Fullt namn" required>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
-                                        <div class="form-group wow fadeInUp delay-0-2s">
-                                            <input type="email" id="email" name="email" class="form-control"  placeholder="Email Adress" required data-error="Vänligen ange ditt e-post adress">
-                                            <div class="help-block with-errors"></div>
+                                        <div class="form-group">
+                                            <input type="email" name="_replyto" class="form-control" placeholder="Email Adress" required>
                                         </div>
                                     </div>
                                     <div class="col-md-12 mb-30">
-                                        <div class="form-group wow fadeInUp delay-0-3s z-3">
-                                            <select name="msg_subject" id="msg_subject" class="form-control">
-                                                <option value="subject">Ämne</option>
+                                        <div class="form-group">
+                                            <select name="_subject" class="form-control" required>
+                                                <option value="" disabled selected>Välj ämne</option>
                                                 <option value="web">Webbdesign</option>
-                                                <option value="web">Webbutveckling</option>
+                                                <option value="development">Webbutveckling</option>
                                                 <option value="graphic">Grafisk Design</option>
-                                                <option value="konsultation">Konsultation</option>
+                                                <option value="consultation">Konsultation</option>
                                             </select>
-                                            <div class="help-block with-errors"></div>
                                         </div>
                                     </div>
                                     <div class="col-md-12">
-                                        <div class="form-group wow fadeInUp delay-0-4s">
-                                            <textarea name="message" id="message" rows="5" placeholder="Skriv meddelande" class="form-control" required data-error="Vänligen ange ditt meddelande"></textarea>
-                                            <div class="help-block with-errors"></div>
+                                        <div class="form-group">
+                                            <textarea name="message" rows="5" class="form-control" placeholder="Skriv meddelande" required></textarea>
                                         </div>
                                     </div>
                                     <div class="col-md-12">
-                                        <div class="form-group mb-0 wow fadeInUp delay-0-5s">
-                                            <button class="theme-btn w-100" id="btn2" type="submit" >skicka Meddelande <i class="fas fa-long-arrow-alt-right"></i></button>
+                                        <div class="form-group mb-0">
+                                            <button type="submit" class="theme-btn w-100">Skicka Meddelande <i class="fas fa-long-arrow-alt-right"></i></button>
                                         </div>
                                     </div>
                                 </div>
@@ -864,76 +860,6 @@
     <!-- Scroll Top Button -->
     <button class="scroll-top scroll-to-target" data-target="html"><span class="fa fa-angle-up"></span></button>
     
-
-
-    <!-- Scripts for the contact form -->
-    <script type='text/javascript' src='./assets/js/config.js'></script>
-    <script src="https://smtpjs.com/v3/smtp.js"></script>
-    <script>
-
-        // Enquiry form
-        var password = config.EMAIL_PASSWORD;
-        const btn1 = document.getElementById("btn1")
-
-        btn1.addEventListener('click' , () => {
-        const enqName = document.getElementById("enqName").value;
-        const enqEmail = document.getElementById("enqEmail").value;
-        const enqMessage = document.getElementById("enqMessage").value;
-        console.log(enqName, enqEmail, enqMessage);
-
-        Email.send({
-            Host: "cpsrv43.misshosting.com",
-            Username : "info@haadwebbyra.se",
-            Password :password,
-            To : 'info@haadwebbyra.se',
-            From : enqName + "<br>" + enqEmail,
-            Subject: "A New Enquiry",
-            Body : enqMessage
-            })
-            .then( function(){
-                document.getElementById("success1").innerHTML= "<div class='text-success'> Tack för att du kontaktar oss, Vi återkommer! </div>"
-                document.getElementById("enqName").value  = "", 
-                document.getElementById("enqEmail").value = "", 
-                document.getElementById("enqMessage").value = ""
-                setTimeout(() => {
-                    window.location.href="#home"; 
-                    document.getElementById("success1").innerHTML= ""
-                    }, 3000)
-                });
-            })
-
-        // Contact form
-        const btn2 = document.getElementById("btn2")
-        btn2.addEventListener('click' , () => {
-        const name = document.getElementById("name").value;
-        const from = document.getElementById("email").value;
-        const subject = document.getElementById("msg_subject").value;
-        const message = document.getElementById("message").value;
-        console.log(name, from, subject, message);
-
-        Email.send({
-            Host: "cpsrv43.misshosting.com",
-            Username : "info@haadwebbyra.se",
-            Password :password,
-            To : 'info@haadwebbyra.se',
-            From : from,
-            Subject : subject,
-            Body : message
-            })
-            .then( function(){
-                document.getElementById("success2").innerHTML= "<div class='text-success'> Tack för att du kontaktar, Vi återkommer! </div>"
-                document.getElementById("name").value  = "", 
-                document.getElementById("email").value = "", 
-                document.getElementById("message").value = ""
-                setTimeout(() => {
-                    window.location.href="#home"; 
-                    document.getElementById("success2").innerHTML= ""
-                    }, 3000)
-                });
-            })
-
-
-  </script>
 
     <!--====== Jquery ======-->
     <script src="assets/js/jquery-3.6.0.min.js"></script>
